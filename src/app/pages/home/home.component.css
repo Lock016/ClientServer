@@ -1,0 +1,25 @@
+.users-containter {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 8em 0;
+}
+
+.user {
+    display: flex;
+}
+.user p{
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.user div {
+    margin-right:1em;
+}
+
+.user h4{
+    font-family: "Shadows Into Light", cursive;
+    margin: 0;
+}
