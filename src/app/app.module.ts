@@ -12,6 +12,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RibbonComponent } from './shared/ribbon/ribbon.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     FooterComponent,
     HeaderComponent,
-    NavigationComponent
+    NavigationComponent,
+    RibbonComponent
   ],
   imports: [
     BrowserModule,

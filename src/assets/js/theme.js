@@ -2359,7 +2359,7 @@ window.theme = {};
 
 			defaults: {
 				wrapper: $('#header'),
-				stickyEnabled: true,
+				stickyEnabled: false,
 				stickyEnableOnBoxed: true,
 				stickyEnableOnMobile: true,
 				stickyWithGap: true,
