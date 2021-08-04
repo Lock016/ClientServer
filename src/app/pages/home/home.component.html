@@ -57,19 +57,47 @@
 
 <section class="users-containter">
 
-    <article class="user" *ngFor="let user of users.data">
+    <article class="user" *ngFor="let u of users">
         <div>
-            <img src="{{user.avatar}}" alt="">
-
-        </div>
-        <div>
-            <p>{{user.id}}</p>
-            <h4>{{user.first_name}} {{user.last_name}}</h4>
-            <p>{{user.email}}</p>
-
+            <img src="https://salvador-client-server.herokuapp.com/{{u.avatar}}" alt="">
+            <p>{{u.id}}</p>
+            <h4>{{u.name}} {{u.lastname}}</h4>
         </div>
     </article>
+    
 </section>
+<div class="container">
+    <article class="user">
+        <label class="inputs" for="name">Name: </label>
+        <input class="inputs" id="name" type="text" [(ngModel)]="uName">
+        <label class="inputs" for="lastname">Last Name: </label>
+        <input class="inputs" id="lastname" type="text" [(ngModel)]="uLastname">
+        <label for="file">Choose File</label>
+        <input type="file"
+           id="file"
+           (change)="handleFileInput($event)">
+        <button class="btn btn-success" (click)="uploadFileToActivity()">Add new User</button>
+        <p *ngIf="successfulNew">User created successfully!</p>
+    </article>
+    <article class="user">
+        <label class="inputs" for="id">ID to delete: </label>
+        <input class="inputs" id="id" type="text" [(ngModel)]="uId">
+        <button class="btn btn-success" (click)="deleteUser()">Delete User</button>
+        <p *ngIf="successfulDelete">User deleted successfully!</p>
+    </article>
+    <article class="user">
+        <label class="inputs" for="idupd">ID: </label>
+        <input class="inputs" id="idupd" type="text" [(ngModel)]="updId">
+        <label class="inputs" for="nameupd">Name: </label>
+        <input class="inputs" id="nameupd" type="text" [(ngModel)]="updName">
+        <label class="inputs" for="lastnameupd">Last Name: </label>
+        <input class="inputs" id="lastnameupd" type="text" [(ngModel)]="updLastname">
+        <button class="btn btn-success" (click)="updateUser()">Update User</button>
+        <p *ngIf="successfulUpd">User updated successfully!</p>
+    </article>
+</div>
+
+
 
 <div class="home-intro light secundary">
     <div class="container">

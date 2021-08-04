@@ -13,6 +13,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RibbonComponent } from './shared/ribbon/ribbon.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RibbonComponent } from './shared/ribbon/ribbon.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

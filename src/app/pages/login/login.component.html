@@ -1,6 +1,51 @@
 <app-ribbon></app-ribbon>
 <div class="container">
 
+    <section class="items-containter">
+
+        <article class="item" *ngFor="let i of items">
+            <div>
+                <img src="https://salvador-client-server.herokuapp.com/{{i.image}}" alt="">
+                <p>{{i.id}}</p>
+                <h4>{{i.name}} - {{i.description}}</h4>
+                <p>{{i.price}}</p>
+            </div>
+        </article>
+    </section>
+    <div class="container">
+        <article class="item">
+            <label class="inputs" for="name">Name: </label>
+            <input class="inputs" id="name" type="text" [(ngModel)]="uName">
+            <label class="inputs" for="description">Description: </label>
+            <input class="inputs" id="description" type="text" [(ngModel)]="uDescription">
+            <label class="inputs" for="price">Price: </label>
+            <input class="inputs" id="price" type="text" [(ngModel)]="uPrice">
+            <label for="file">Choose File</label>
+            <input type="file"
+            id="file"
+            (change)="handleFileInput($event)">
+            <button class="btn btn-success" (click)="uploadFileToActivity()">Add new Item</button>
+            <p *ngIf="successfulNew">Item created successfully!</p>
+        </article>
+        <article class="item">
+            <label class="inputs" for="id">ID to delete: </label>
+            <input class="inputs" id="id" type="text" [(ngModel)]="uId">
+            <button class="btn btn-success" (click)="deleteItem()">Delete Item</button>
+            <p *ngIf="successfulDelete">Item deleted successfully!</p>
+        </article>
+        <article class="item">
+            <label class="inputs" for="idupd">ID: </label>
+            <input class="inputs" id="idupd" type="text" [(ngModel)]="updId">
+            <label class="inputs" for="nameupd">Name: </label>
+            <input class="inputs" id="nameupd" type="text" [(ngModel)]="updName">
+            <label class="inputs" for="descriptionupd">Description: </label>
+            <input class="inputs" id="descriptionupd" type="text" [(ngModel)]="updDescription">
+            <label class="inputs" for="priceupd">Price: </label>
+            <input class="inputs" id="priceupd" type="text" [(ngModel)]="updPrice">
+            <button class="btn btn-success" (click)="updateItem()">Update Item</button>
+            <p *ngIf="successfulUpd">Item updated successfully!</p>
+        </article>
+    </div>
     <div class="row">
         <div class="col-md-12">
 

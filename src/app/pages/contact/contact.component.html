@@ -3,6 +3,44 @@
     <app-ribbon title='Contact' folder='Pages'></app-ribbon>
 
     <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
+    <section class="sellers-containter">
+
+        <article class="seller" *ngFor="let s of sellers">
+            <div>
+            </div>
+            <div>
+                <img src="https://salvador-client-server.herokuapp.com/{{s.logo}}" alt="">
+                <p>{{s.id}}</p>
+                <h4>{{s.company}}</h4>
+            </div>
+        </article>
+    </section>
+    <div class="container">
+        <article class="seller">
+            <label class="inputs" for="company">Company: </label>
+            <input class="inputs" id="company" type="text" [(ngModel)]="uCompany">
+            <label for="file">Choose File</label>
+            <input type="file"
+           id="file"
+           (change)="handleFileInput($event)">
+            <button class="btn btn-success" (click)="uploadFileToActivity()">Add new Seller</button>
+            <p *ngIf="successfulNew">Seller created successfully!</p>
+        </article>
+        <article class="seller">
+            <label class="inputs" for="id">ID to delete: </label>
+            <input class="inputs" id="id" type="text" [(ngModel)]="uId">
+            <button class="btn btn-success" (click)="deleteSeller()">Delete Seller</button>
+            <p *ngIf="successfulDelete">Seller deleted successfully!</p>
+        </article>
+        <article class="seller">
+            <label class="inputs" for="idupd">ID: </label>
+            <input class="inputs" id="idupd" type="text" [(ngModel)]="updId">
+            <label class="inputs" for="companyupd">Company: </label>
+            <input class="inputs" id="companyupd" type="text" [(ngModel)]="updCompany">
+            <button class="btn btn-success" (click)="updateSeller()">Update Seller</button>
+            <p *ngIf="successfulUpd">Seller updated successfully!</p>
+        </article>
+    </div>
     <div id="googlemaps" class="google-map"></div>
 
     <div class="container">

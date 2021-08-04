@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserResult } from 'src/app/interfaces/user';
+import { User } from 'src/app/interfaces/user';
 import { UsersService } from 'src/app/services/users.service';
+
+interface HTMLInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
 
 @Component({
   selector: 'app-home',
@@ -10,13 +14,56 @@ import { UsersService } from 'src/app/services/users.service';
 export class HomeComponent implements OnInit {
 
   constructor(private service: UsersService) { }
-  users!:UserResult;
+  users!: User[];
+  uName!: string;
+  uLastname!: string;
+  uAvatar: File | null = null;
+  updId!: number;
+  updName!: string;
+  updAvatar!: string;
+  updLastname!: string;
+  successfulNew!: boolean;
+  successfulDelete!: boolean;
+  successfulUpd!: boolean;
+  uId!: number;
+  fileToUpload!: File;
 
   ngOnInit(): void {
-    this.service.getUsers().subscribe((result: UserResult) => {
+    this.successfulNew = false;
+    this.successfulDelete = false;
+    this.successfulUpd = false;
+    this.service.getUsers().subscribe((result: User[]) => {
       this.users = result;
       console.log(result);
+      console.log(result[0].id);
     });
+  }
+
+  handleFileInput( event: any) {
+    this.fileToUpload = event.target.files.item(0) as File;
+  }
+
+  saveNew(){
+    const newUser = {name:this.uName, lastname: this.uLastname, avatar: "avatar.jpg"}
+    this.service.addUser(newUser).subscribe(user => {
+      this.successfulNew = true;
+      this.users.push(user);
+    });
+  }
+  uploadFileToActivity() {
+    this.service.postFile(this.uName, this.uLastname, this.fileToUpload).subscribe(data => {
+        this.successfulNew = true;
+        this.users.push(data);
+      }, error => {
+        console.log(error);
+      });
+  }
+  deleteUser(){
+    this.service.deleteUser(this.uId).subscribe(() => this.successfulDelete = true);
+  }
+  updateUser(){
+    const userToUpdate = {id: this.updId, name: this.updName, lastname: this.updLastname}
+    this.service.updateUser(userToUpdate).subscribe(() => this.successfulUpd = true);
   }
 
 }
